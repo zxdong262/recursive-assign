@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/zxdong262/recursive-assign.svg?branch=master)](https://travis-ci.org/zxdong262/recursive-assign)
+
 # recursive-assign
 just recursive assign
 
