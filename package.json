@@ -1,0 +1,29 @@
+{
+  "name": "recursive-assign",
+  "version": "0.0.1",
+  "description": "recursive assign",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxdong262/recursive-assign.git"
+  },
+  "keywords": [
+    "'recursive",
+    "assign'"
+  ],
+  "author": "ZHAO Xudong <zxdong@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zxdong262/recursive-assign/issues"
+  },
+  "homepage": "https://github.com/zxdong262/recursive-assign#readme",
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.2"
+  }
+}
