@@ -36,7 +36,7 @@ it('basic', function () {
       gg: 56,
       jj: 'asd',
       hh: {
-        kl: 'sa5',
+        kl: (ori) => ori + '5', //use function to change original value
         hhg: 'sdf'
       },
       arr: '90'

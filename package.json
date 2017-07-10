@@ -1,6 +1,6 @@
 {
   "name": "recursive-assign",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "recursive assign",
   "main": "index.js",
   "scripts": {

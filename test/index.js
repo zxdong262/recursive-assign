@@ -27,7 +27,7 @@ describe(pack.name, function () {
         gg: 56,
         jj: 'asd',
         hh: {
-          kl: 'sa5',
+          kl: (ori) => ori + '5',
           hhg: 'sdf'
         },
         arr: '90'
