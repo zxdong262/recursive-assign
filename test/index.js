@@ -15,7 +15,8 @@ describe(pack.name, function () {
           kl: 'sa'
         },
         ll: 'sdf',
-        arr: [7]
+        arr: [7],
+        func: 'sdfsd'
       }
     }
 
@@ -30,7 +31,8 @@ describe(pack.name, function () {
           kl: (ori) => ori + '5',
           hhg: 'sdf'
         },
-        arr: '90'
+        arr: '90',
+        func: () => () => 'sdfds'
       }
     }
 
@@ -42,6 +44,7 @@ describe(pack.name, function () {
     equal(a.z.ll, 'sdf')
     equal(a.z.hh.hhg, 'sdf')
     equal(a.z.arr, '90')
+    equal(a.z.func(), 'sdfds')
   })
 
 })
