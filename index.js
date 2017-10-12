@@ -6,10 +6,10 @@
  */
 const _ = require('lodash')
 function recExtend(obj1, obj2) {
-  let keys = Object.keys(obj2)
-  keys.forEach((key) => {
-    let res1 = obj1[key]
-    let res2 = obj2[key]
+  var ks = _.keys(obj2)
+  _.each(ks, function(key) {
+    var res1 = obj1[key]
+    var res2 = obj2[key]
     if (_.isPlainObject(res1) && _.isPlainObject(res2)) {
       recExtend(obj1[key], res2)
     } else if (_.isFunction(res2)) {
