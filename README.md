@@ -1,20 +1,31 @@
-[![Build Status](https://travis-ci.org/zxdong262/recursive-assign.svg?branch=master)](https://travis-ci.org/zxdong262/recursive-assign)
 
 # recursive-assign
-just recursive assign
 
-# use
+A TypeScript library for recursively assigning properties from one object to another with support for function-based transformations.
+
+## Features
+
+- 🚀 Written in TypeScript with full type safety
+- 📦 Supports both ESM and CommonJS
+- 🔄 Recursive deep assignment
+- 🛡️ Prototype pollution protection
+- ⚡ Zero dependencies (removed lodash)
+- 🧪 Comprehensive test suite with Vitest
+
+## Installation
 
 ```bash
-npm i recursive-assign
+npm install recursive-assign
 ```
 
-```js
-const extend = require('recursive-assign')
-const { equal } = require('assert')
+## Usage
 
+### ESM (Recommended)
 
-let a = {
+```typescript
+import recursiveAssign from 'recursive-assign'
+
+const target = {
   x: '3',
   y: true,
   z: {
@@ -29,7 +40,7 @@ let a = {
   }
 }
 
-let b = {
+const source = {
   x: 6,
   y: false,
   z: {
@@ -37,26 +48,72 @@ let b = {
     gg: 56,
     jj: 'asd',
     hh: {
-      kl: (ori) => ori + '5', //use function to change original value
+      kl: (original: string) => original + '5', // Function to transform original value
       hhg: 'sdf'
     },
     arr: '90',
-    func: () => {
-      return () => 'safds' //change to a function
-    }
+    func: () => () => 'safds' // Replace with a function
   }
 }
 
-extend(a, b)
-equal(a.x, 6)
-equal(a.y, false)
-equal(a.z.ff, 'as8')
-equal(a.z.hh.kl, 'sa5')
-equal(a.z.ll, 'sdf')
-equal(a.z.hh.hhg, 'sdf')
-equal(a.z.arr, '90')
-equal(a.z.func(), 'safds')
+recursiveAssign(target, source)
+
+console.log(target.x) // 6
+console.log(target.y) // false
+console.log(target.z.ff) // 'as8'
+console.log(target.z.hh.kl) // 'sa5' (transformed by function)
+console.log(target.z.ll) // 'sdf' (unchanged)
+console.log(target.z.hh.hhg) // 'sdf' (added)
+console.log(target.z.arr) // '90'
+console.log(target.z.func()) // 'safds'
+```
+
+### CommonJS
+
+```javascript
+const recursiveAssign = require('recursive-assign').default
+// or
+const { recursiveAssign } = require('recursive-assign')
+```
+
+## API
+
+### `recursiveAssign<T>(target: T, source: Record<string, any>): T`
+
+Recursively assigns properties from the `source` object to the `target` object.
+
+**Parameters:**
+- `target`: The target object to assign properties to
+- `source`: The source object to copy properties from
+
+**Returns:** The modified target object
+
+**Behavior:**
+- Plain objects are merged recursively
+- Functions in the source object are called with the original value from the target
+- Other values are assigned directly
+- Prototype pollution is prevented (ignores `__proto__`, `constructor`, `prototype`)
+
+## Development
+
+### Building
+
+```bash
+npm run build
+```
+
+This creates:
+- `dist/esm/` - ES modules
+- `dist/cjs/` - CommonJS modules  
+- `dist/types/` - TypeScript declarations
+
+### Testing
+
+```bash
+npm test        # Run tests in watch mode
+npm run test:run # Run tests once
 ```
 
 ## License
+
 MIT

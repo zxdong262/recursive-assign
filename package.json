@@ -1,10 +1,43 @@
 {
   "name": "recursive-assign",
-  "version": "0.2.0",
+  "version": "1.0.1",
   "description": "recursive assign",
-  "main": "index.js",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "mocha"
+    "build": "npm run clean && npm run build:bundle",
+    "build:bundle": "node build/build.js",
+    "clean": "rm -rf dist",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "lint": "standard",
+    "fix": "standard --fix",
+    "pretest": "npm run lint",
+    "prepublishOnly": "npm run build"
+  },
+  "standard": {
+    "ignore": [
+      "dist/**",
+      "temp/**",
+      "node_modules/**"
+    ]
   },
   "repository": {
     "type": "git",
@@ -12,7 +45,10 @@
   },
   "keywords": [
     "recursive",
-    "assign"
+    "assign",
+    "typescript",
+    "merge",
+    "object"
   ],
   "author": "ZHAO Xudong <zxdong@gmail.com>",
   "license": "MIT",
@@ -20,10 +56,11 @@
     "url": "https://github.com/zxdong262/recursive-assign/issues"
   },
   "homepage": "https://github.com/zxdong262/recursive-assign#readme",
-  "dependencies": {
-    "lodash": "^4.17.4"
-  },
   "devDependencies": {
-    "mocha": "^3.4.2"
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.19.0",
+    "standard": "^17.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
   }
 }
